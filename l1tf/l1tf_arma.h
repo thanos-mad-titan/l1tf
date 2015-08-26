@@ -10,15 +10,9 @@ extern "C" {
 #endif
 
 	/* main routine for l1 trend filtering */
-	L1TF_API l1tf_arma(const int n, const double *y, const double lambda, double *x);
+	L1TF_API l1tf(const int n, const double *y, const double lambda, double *x);
 
-	L1TF_API lambdamax_arma(const int n, const double *y, double* lmax);
-
-	/* utility to compute the maximum value of lambda */
-	double l1tf_lambdamax(const int n, double *y);
-
-	/* utility to print a vector */
-	void print_dvec(int n, const double *x);
+	L1TF_API lambdamax(const int n, const double *y, double* lmax);
 
 #ifdef __cplusplus
 }

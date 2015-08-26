@@ -5,8 +5,22 @@
 using namespace arma;
 
 
+L1TF_API lambdamax(const int n, const double *y, double* lmax)
+{
+	/* dimension */
+	const int    m = n - 2;  /* length of Dx */
 
-L1TF_API l1tf_arma(const int n, const double *y, const double lambda, double *x)
+	vec y_vec = vec(y, n);
+	mat I2 = eye(m, m);
+	mat O2 = zeros(m, 1);
+	mat D = join_horiz(I2, join_horiz(O2, O2)) + join_horiz(O2, join_horiz(-2.0 * I2, O2)) + join_horiz(O2, join_horiz(O2, I2));
+
+	mat DDT = D * D.t();
+	vec Dy = D * y_vec;
+	*lmax = norm(solve(DDT, Dy), "inf");
+};
+
+L1TF_API l1tf(const int n, const double *y, const double lambda, double *x)
 {
 	/* parameters */
 	const double ALPHA = 0.01; /* linesearch parameter (0,0.5] */
@@ -26,7 +40,6 @@ L1TF_API l1tf_arma(const int n, const double *y, const double lambda, double *x)
 	mat D = join_horiz(I2, join_horiz(O2, O2)) + join_horiz(O2, join_horiz(-2.0 * I2, O2)) + join_horiz(O2, join_horiz(O2, I2));
 
 	mat DDT = D * D.t();
-
 	mat Dy = D * y_vec;
 
 	mat z = zeros(m, 1);

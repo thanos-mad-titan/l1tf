@@ -10,11 +10,13 @@ int main()
 	y.load("snp500.txt");
 	vec x(y.n_rows);
 	double lambda = 50;
+	double lmax;
 	wall_clock w;
 	w.tic();
-	l1tf_arma(y.n_rows, y.memptr(), lambda, x.memptr());
+	lambdamax(y.n_rows, y.memptr(), &lmax);
+	l1tf(y.n_rows, y.memptr(), lambda, x.memptr());
 	cout << w.toc() << endl;
-
+	cout << "lambda max: " << lmax << endl;
 	mat r = join_horiz(y, x);
 
 	r.eval().save("result.csv", csv_ascii);

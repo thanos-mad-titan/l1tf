@@ -74,7 +74,7 @@
 //// Make sure the directory has a trailing /
 
 #if !defined(ARMA_USE_CXX11)
-#define ARMA_USE_CXX11
+//#define ARMA_USE_CXX11
 //// Uncomment the above line to forcefully enable use of C++11 features (eg. initialiser lists).
 //// Note that ARMA_USE_CXX11 is automatically enabled when a C++11 compiler is detected.
 #endif
