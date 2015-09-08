@@ -10,9 +10,11 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
 		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Debug|Any CPU.ActiveCfg = Debug|Win32
@@ -20,11 +22,15 @@ Global
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Debug|Win32.ActiveCfg = Debug|Win32
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Debug|Win32.Build.0 = Debug|Win32
+		{52B9FD96-4922-4874-8498-790A1E622E6F}.Debug|x64.ActiveCfg = Debug|x64
+		{52B9FD96-4922-4874-8498-790A1E622E6F}.Debug|x64.Build.0 = Debug|x64
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Release|Any CPU.ActiveCfg = Release|Win32
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Release|Win32.ActiveCfg = Release|Win32
 		{52B9FD96-4922-4874-8498-790A1E622E6F}.Release|Win32.Build.0 = Release|Win32
+		{52B9FD96-4922-4874-8498-790A1E622E6F}.Release|x64.ActiveCfg = Release|Win32
+		{52B9FD96-4922-4874-8498-790A1E622E6F}.Release|x64.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

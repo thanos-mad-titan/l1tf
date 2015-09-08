@@ -15,7 +15,7 @@ int main()
 	w.tic();
 	lambdamax(y.n_rows, y.memptr(), &lmax);
 	l1tf(y.n_rows, y.memptr(), lambda, x.memptr());
-	cout << w.toc() << endl;
+	cout << "Time to L1 Trend filter " << w.toc() << endl;
 	cout << "lambda max: " << lmax << endl;
 	mat r = join_horiz(y, x);
 

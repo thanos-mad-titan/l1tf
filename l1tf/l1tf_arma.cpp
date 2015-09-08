@@ -13,11 +13,11 @@ L1TF_API lambdamax(const int n, const double *y, double* lmax)
 	vec y_vec = vec(y, n);
 	mat I2 = eye(m, m);
 	mat O2 = zeros(m, 1);
-	mat D = join_horiz(I2, join_horiz(O2, O2)) + join_horiz(O2, join_horiz(-2.0 * I2, O2)) + join_horiz(O2, join_horiz(O2, I2));
+	sp_mat D = sp_mat(join_horiz(I2, join_horiz(O2, O2)) + join_horiz(O2, join_horiz(-2.0 * I2, O2)) + join_horiz(O2, join_horiz(O2, I2)));
 
-	mat DDT = D * D.t();
+	sp_mat DDT = D * D.t();
 	vec Dy = D * y_vec;
-	*lmax = norm(solve(DDT, Dy), "inf");
+	*lmax = norm(spsolve(DDT, Dy), "inf");
 };
 
 L1TF_API l1tf(const int n, const double *y, const double lambda, double *x)
@@ -37,9 +37,9 @@ L1TF_API l1tf(const int n, const double *y, const double lambda, double *x)
 	
 	mat I2 = eye(m, m);
 	mat O2 = zeros(m, 1);
-	mat D = join_horiz(I2, join_horiz(O2, O2)) + join_horiz(O2, join_horiz(-2.0 * I2, O2)) + join_horiz(O2, join_horiz(O2, I2));
+	sp_mat D = sp_mat(join_horiz(I2, join_horiz(O2, O2)) + join_horiz(O2, join_horiz(-2.0 * I2, O2)) + join_horiz(O2, join_horiz(O2, I2)));
 
-	mat DDT = D * D.t();
+	sp_mat DDT = D * D.t();
 	mat Dy = D * y_vec;
 
 	mat z = zeros(m, 1);
@@ -57,7 +57,7 @@ L1TF_API l1tf(const int n, const double *y, const double lambda, double *x)
 	mat DDTz(m, 1);
 	mat w(m, 1);
 	mat rz(m, 1);
-	mat S(m, m);
+	sp_mat S(m, m);
 	mat r(m, 1);
 	mat dz(m, 1);
 	mat dmu1(m, 1);
@@ -82,8 +82,7 @@ L1TF_API l1tf(const int n, const double *y, const double lambda, double *x)
 		// two ways to evaluate primal objective :
 		// 1) using dual variable of dual problem
 		// 2) using optimality condition
-		//vec yw = solve(RDU, w);
-		vec xw = solve(DDT, w);
+		vec xw = spsolve(DDT, w);
 
 		mat pobj1 = (0.5 * w.t() * (xw)) + lambda * arma::sum(mu1 + mu2);
 		
@@ -110,7 +109,7 @@ L1TF_API l1tf(const int n, const double *y, const double lambda, double *x)
 		rz = DDTz - w;
 		S = DDT - diagmat(mu1/f1 + mu2/f2);
 		r = -DDTz + Dy + ((1 / t) / f1) - ((1 / t) / f2);
-		dz = mat(solve(S, r));
+		dz = mat(spsolve(S, r));
 		dmu1 = -(mu1 + ((dz % mu1) + (1 / t)) / f1);
 		dmu2 = -(mu2 + ((dz % mu2) + (1 / t)) / f2);
 		

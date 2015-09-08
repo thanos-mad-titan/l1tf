@@ -49,3 +49,6 @@ Temporary Items
 *.suo
 *.pdf
 *.html
+l1tf/result.csv
+l1tf/result.csv.*
+l1tf.vcxproj.user
